@@ -1,0 +1,27 @@
+<nav dir="rtl" style="z-index: 10;" class="shadow-sm bg-light navbar-container align-items-center d-flex position-fixed w-100">
+    <div class="me-5 align-items-center d-flex w-50">
+      <div class="heart mx-3 d-flex align-items-center" style="height: 4rem;">
+        <span class="fs-2"><i class="bi bi-heart-pulse-fill"></i></span>
+      </div>
+      <input class="h-50 form-control" [(ngModel)]="searchText" title="Search" type="search" placeholder="جستجو...">
+    </div> 
+    <div class="w-50 d-flex justify-content-end mx-5">
+      <div class="d-flex">
+        <div *ngIf="onWhatPath == 'category' ? false : true" class="mx-1">
+          <button matBadge={{FavItemNumber}} (click)="isSideNavOpen = !isSideNavOpen" [matBadgeHidden]="FavItemNumber == 0 ? true : false" matBadgePosition="before" matBadgeColor="warn" mat-button>
+            <i class="fs-4 bi bi-bookmark-star-fill"></i>
+          </button>
+        </div>
+        <div class="mx-1">
+          <button mat-button [matMenuTriggerFor]="menu"><i class="fs-4 bi bi-person-circle"></i></button>
+            <mat-menu #menu="matMenu">
+              <a routerLink="/account" mat-menu-item><mat-icon>account_box</mat-icon><span>حساب کاربری</span></a>
+              <button mat-menu-item (click)="onLogOut()" title="LogOut"><mat-icon>input</mat-icon><span class="align-center">خروج</span></button>
+            </mat-menu>
+        </div>
+        <div class="mx-1">
+          <a routerLink="/category" mat-button><i class="fs-4 bi bi-arrow-left"></i></a>
+        </div>
+      </div>
+    </div>
+   </nav>

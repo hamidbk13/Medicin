@@ -1,0 +1,45 @@
+<mat-dialog-content dir="rtl" class="container" class="mat-typography">
+    <div [ngSwitch]="SelectedChildren">
+      <table *ngSwitchCase='23' class="table">
+        <thead>
+           <tr>
+             <th>اسم دارو</th>
+             <th></th>
+           </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let children of cc1">
+                <td>{{children.name}}</td>
+                <td><div style="width: 50px;"><img class="w-100" src="https://medic.fatap.ir/public/uploads/images/categories/{{children.image}}_400_400.jpg" alt=""></div></td>
+                <td>
+                  <a mat-dialog-close mat-raised-button 
+                [routerLink]="['details',children.id]">جزئیات</a>
+                </td>
+            </tr>
+        </tbody>
+      </table>
+
+      <table *ngSwitchCase='76' class="table">
+        <thead>
+           <tr>
+             <th> سوختگی</th>
+             <th></th>
+           </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let children of cc2">
+                <td>{{children.name}}</td>
+                <td>
+                  <div style="width: 50px;">
+                    <img class="w-100" src="https://medic.fatap.ir/public/uploads/images/categories/{{children.image}}_400_400.jpg" alt="">
+                  </div>
+                </td>
+                <td>
+                  <a mat-dialog-close mat-raised-button 
+                [routerLink]="['details',children.id]">جزئیات</a>
+                </td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+</mat-dialog-content>

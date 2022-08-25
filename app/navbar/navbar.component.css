@@ -1,0 +1,28 @@
+.navbar-container {
+    top: 0;
+    left: 0;
+    height: 4rem;
+    border-radius: 0 0 0.5em 0.5rem;
+}
+
+input {
+    width: 20vw;
+    transition: width 0.5s;
+}
+
+input:focus {
+    width: 35vw;
+}
+
+.heart {
+    animation: heart 3s linear infinite;
+}
+
+@keyframes heart {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg); 
+    }
+}

@@ -1,0 +1,25 @@
+.navbar-container {
+    top: 0;
+    left: 0;
+    height: 4rem;
+    background: #6a11cb;
+    border-radius: 0 0 0.5em 0.5rem;
+}
+
+.category-container {
+    flex: 1 0 25% ;
+}
+
+img:hover {
+    opacity: 0.6;
+}
+
+.card-footer {
+    border: none;
+}
+
+@media (max-width: 537px) {
+    .card {
+        width: 30vw !important;
+    }
+}

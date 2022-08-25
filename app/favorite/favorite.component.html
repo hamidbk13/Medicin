@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="mb-2">
+        <button class="w-100 btn btn-success" (click)="onGetContent()"><span>بروزرسانی</span></button>
+    </div>
+    <mat-progress-bar *ngIf="isLoading" mode="query"></mat-progress-bar>
+    <table class="table">
+        <thead>
+            <tr class="alert alert-primary">
+                <th>اسم</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="py-2" *ngFor="let item of favorites">
+                <td class="fw-bold"><span>{{item.name}}</span></td>
+                <td>
+                    <button mat-button (click)="onDeleteItem(item)"><i class="fs-3 bi bi-x"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,83 @@
+<mat-sidenav-container class="vh-100">
+  <mat-sidenav dir="rtl" #favorite mode="over" [opened]="navbar.isSideNavOpen">
+    <div class="mt-4 d-flex align-items-center">
+      <button type="button" class="me-2 btn-close" (click)="favorite.close()"></button>
+      <span class=" ms-2 me-5 fs-5">علاقه مندی ها</span>
+    </div>
+    <hr>
+    <app-favorite></app-favorite>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-navbar [FavItem]="favContent" #navbar [(searchText)]="searchedText"></app-navbar>
+    <div dir="rtl" style="top: 6rem;" class="card position-relative d-flex container">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">اسم</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <div *ngIf="Contents.length == 0" class="d-flex mt-5 justify-content-center"><span class="fw-bold alert alert-warning">اطلاعاتی برای نمایش وجود ندارد</span></div>
+        <tbody>
+        <tr *ngFor="let content of Contents | filter: searchedText">
+          <td>{{content.name}}</td>
+          <td>
+            <button *ngIf="content.tabs.length > 0" class="btn btn-sm btn-success" (click)="onShowTabModal(Tabs)">توضیحات</button>
+          </td>
+          <td>
+            <button *ngIf="content.medias.length > 0" class="btn btn-sm btn-warning" (click)="onShowMediaModal(Medias)">رسانه ها</button>
+          </td>
+          <td>
+            <button [disabled]="!content.isActive" (click)="onAddToFavarite(content)" color="accent" mat-stroked-button>افزودن به علاقه مندی</button>
+          </td>
+          <ng-template #Tabs let-modal>
+            <div class="modal-header">
+              <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+            </div>
+            <div dir="rtl" class="modal-body">
+              <div *ngFor="let tab of content.tabs">
+                  <h3><span class="fw-bold">{{tab.name}}</span></h3>
+                  <div class="mb-3" [innerHTML]="tab.pivot.computed_content | sanitizeHtml"></div>
+                  <hr>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-sm btn-success" (click)="modal.dismiss('Cross click')"><span>بستن</span></button>
+            </div>
+          </ng-template>
+  
+          <ng-template #Medias let-modal>
+            <div class="modal-header">
+              <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+            </div>
+            <div class="modal-body">
+              <div class="d-flex flex-column align-items-center" *ngFor="let media of content.medias">
+                <h3><span class="fw-bold">{{media.name}}</span></h3>
+                <video controls>
+                  <source src={{media.url}} type="video/mp4">
+                </video>
+                <hr>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">بستن</button>
+            </div>
+          </ng-template>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+
+
+
+
+
+
+

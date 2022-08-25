@@ -1,0 +1,32 @@
+<app-navbar [(searchText)]="searchedText"></app-navbar>
+
+  <div style="top: 6rem;" dir="rtl" class="border rounded py-5 position-relative container d-flex flex-wrap">
+    <div class="categories" style="flex: 1 0 25%" *ngFor="let category of Categories | filter: searchedText">
+      <div class="d-flex justify-content-center">
+        <div class="card mx-2 mb-2" style="width: 15rem">
+         <div>
+          <img class="card-img-top" src="https://medic.fatap.ir/public/uploads/images/categories/{{category.image}}_400_400.jpg" alt={{category.id}}>
+         </div>
+          <div class="card-body">
+            <h5 class="card-title"><span>{{category.name}}</span></h5>
+          </div>
+            <div class="card-footer">
+              <div class="d-flex justify-content-center">
+                <div class="mx-1">
+                  <a [routerLink]="['/details',category.id]" *ngIf="category.children.length == 0" color="primary" mat-stroked-button>جزئیات</a>
+                </div>
+                <div *ngIf="category.children.length > 0" class="mx-1">
+                  <button mat-stroked-button (click)="openDialog(category.id)" color="primary">سایر</button>
+                </div>
+               </div>
+            </div>
+         </div>
+       </div>
+    </div>
+  </div>
+
+<div>
+  <app-footer></app-footer>
+</div>
+
+
