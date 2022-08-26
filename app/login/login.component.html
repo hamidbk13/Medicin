@@ -17,8 +17,13 @@
                     <input type="text" required name="email" placeholder="Email" ngModel class="form-control" />
                   </div>
     
-                  <div class="form-outline form-white mb-4">
-                    <input required name="password" type="password" placeholder="passsword" ngModel class="form-control" />
+                     <div class="mb-4">
+                    <div class="input-group">
+                      <input required name="password" [type]="PassShow == true ? 'text' : 'password'" placeholder="passsword" ngModel={{signupForm.password}} class="form-control"/>
+                      <div class="input-group-append">
+                        <button type="button" (click)="PassShow = !PassShow" class="btn border"><i [ngClass]="PassShow == true ? 'bi bi-eye-slash' : 'bi bi-eye'"></i></button>
+                     </div>
+                    </div>
                   </div>
                   <hr>
                   <div class="d-flex justify-content-around">
