@@ -40,8 +40,13 @@ export class AuthService {
     return localStorage.getItem('accessToken');
   }
 
-  AutoLogOut() {
-    
+   AutoLogOut(expireInSeconds: number) {
+    timer(1000,1000).pipe(
+      takeWhile(()=> expireInSeconds > 0),
+      tap(()=> expireInSeconds--))
+      .subscribe({
+        complete: () => this.Logout()
+      })
   }
 
 
